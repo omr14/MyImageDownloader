@@ -2,6 +2,7 @@ import requests
 import datetime
 import json
 import os
+import argparse
 
 def download_image(url, auth=None):
     """
@@ -49,13 +50,21 @@ def make_filepath(root_dir):
 
 if __name__ == "__main__":
 
-    _f = open("./config.json")
+    parser = argparse.ArgumentParser(
+            prog="download_image.py",
+            usage="to download image from url"
+            )
+    parser.add_argument('-c', '--config', help='path to config.json',
+                        type=str, required=True)
+    args = parser.parse_args()
+
+    _f = open(args.config)
     config = json.load(_f)    
     _f.close()
 
     print("Fetch from: " + config["url"])
 
-    auth = (config["auth"]["user"], config["auth"]["path"])
+    auth = (config["auth"]["user"], config["auth"]["pass"])
     binary = download_image(config["url"], auth)
 
     image_root = config["directory"]
