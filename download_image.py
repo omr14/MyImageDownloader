@@ -53,10 +53,14 @@ if __name__ == "__main__":
     config = json.load(_f)    
     _f.close()
 
+    print("Fetch from: " + config["url"])
+
     auth = (config["auth"]["user"], config["auth"]["path"])
     binary = download_image(config["url"], auth)
 
     image_root = config["directory"]
     path = make_filepath(image_root)
+
+    print("Image saved: " + path)
 
     save_binary(binary, path)
