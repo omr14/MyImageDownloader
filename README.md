@@ -1,8 +1,7 @@
 # MyImageDownloader
 
+## Configuration
 make config file as name `config.json`
-and save `config.json` in same location as the file `download_image.py`
-
 example `config.json`
 ```
 {
@@ -14,3 +13,10 @@ example `config.json`
   "directory": "image"
 }
 ```
+
+## Execution
+```
+$ python download_image.py -c path_to_config.json
+```
+
+`-c`, `--config` argument path to config.json
